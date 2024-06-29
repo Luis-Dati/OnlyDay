@@ -5,6 +5,10 @@ body {
 	overflow-x:hidden;
 }
 
+#main, #candle {
+  transition: opacity linear 3s;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -105,4 +109,25 @@ body {
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
+}
+
+.star-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  direction: rtl;
+}
+.star-wrapper a {
+  color: #000;
+  text-decoration: none;
+  transition: all 0.5s;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.blurground {
+  background-color: #5C5C5C;
+}
+
+.blur {
+  opacity: .4;
 }
