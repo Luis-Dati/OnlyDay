@@ -1,6 +1,97 @@
 $('document').ready(function(){
 	var url = "https://onlydayserver.onrender.com/respone";
 
+	class Firework {
+	    constructor(x, y, color) {
+	        this.x = x;
+	        this.y = y;
+	        this.color = color;
+	        this.particles = [];
+	        this.createParticles();
+	    }
+
+	    createParticles() {
+	        const particleCount = 100;
+	        for (let i = 0; i < particleCount; i++) {
+	            this.particles.push(new Particle(this.x, this.y, this.color));
+	        }
+	    }
+
+	    update() {
+	        this.particles.forEach(particle => particle.update());
+	    }
+
+	    draw(ctx) {
+	        this.particles.forEach(particle => particle.draw(ctx));
+	    }
+	}
+
+	class Particle {
+	    constructor(x, y, color) {
+	        this.x = x;
+	        this.y = y;
+	        this.color = color;
+	        this.size = Math.random() * 2 + 1;
+	        this.speedX = Math.random() * 5 - 2.5;
+	        this.speedY = Math.random() * 5 - 2.5;
+	        this.gravity = 0.05;
+	    }
+
+	    update() {
+	        this.x += this.speedX;
+	        this.y += this.speedY;
+	        this.speedY += this.gravity;
+	        this.size *= 0.98;
+	    }
+
+	    draw(ctx) {
+	        ctx.fillStyle = this.color;
+	        ctx.beginPath();
+	        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+	        ctx.fill();
+	    }
+	}
+
+	const canvas = document.createElement('canvas');
+	document.getElementsByClassName('fireworks')[0].appendChild(canvas);
+	canvas.width = window.innerWidth > 550 ? 550 : window.innerWidth;
+	canvas.height = window.innerHeight - parseInt($('.vine-flower').css('height')) - parseInt($('#candle').css('height'))
+	const ctx = canvas.getContext('2d');
+
+	const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+	var animateId;
+
+	function createRandomFirework() {
+	    const x = Math.random() * canvas.width;
+	    const y = Math.random() * canvas.height;
+	    const color = colors[Math.floor(Math.random() * colors.length)];
+	    return new Firework(x, y, color);
+	}
+
+	const fireworks = [];
+
+	function animate() {
+	    ctx.clearRect(0, 0, canvas.width, canvas.height);
+	    if (Math.random() < 0.1) {
+	        fireworks.push(createRandomFirework());
+	    }
+	    fireworks.forEach((firework, index) => {
+	        firework.update();
+	        firework.draw(ctx);
+	        if (firework.particles[0].size < 0.1) {
+	            fireworks.splice(index, 1);
+	        }
+	    });
+
+	    animateId = requestAnimationFrame(animate);
+	}
+
+	window.addEventListener('resize', () => {
+	    canvas.width = window.innerWidth > 550 ? 550 : window.innerWidth;
+	    canvas.height = window.innerHeight - parseInt($('.vine-flower').css('height')) - parseInt($('#candle').css('height'))
+	});
+
+
 	$('#dayBtn').on('click',function(){
 		var day = $('#dayInput').val()
 		console.log(day)
@@ -30,7 +121,7 @@ $('document').ready(function(){
 	let isClick = false;
 	$('#play').click(function(){
 		if(!isClick){
-			const time = 3000;
+			const time = 1000;
 			$('.song')[0].play()
 			$('#play').delay(1000).fadeOut('slow').delay(2000).promise().done(()=>{
 				$('#message1').show().promise().done(()=>{
@@ -42,8 +133,13 @@ $('document').ready(function(){
 										$('#p6').fadeIn('slow').delay(time).fadeOut('slow').promise().done(()=>{
 											$('#p7').fadeIn('slow').delay(time).fadeOut('slow').promise().done(()=>{
 												$('#p8').fadeIn('slow').delay(2000).promise().done(()=>{
-													$('#cake').slideDown(2000).delay(4000).promise().done(()=>{
-														$('#continue').fadeIn('fast')
+													$('#cake').slideDown(2000).delay(1000).promise().done(()=>{
+														$('#fireworkBox').fadeIn(1000).promise().done(()=>{
+															animate(); 
+															$('#fireworkBox').delay(8000).fadeOut(1000).promise().done(()=>{
+																$('#continue').fadeIn('fast')
+															})
+														})
 													})
 												})
 											});
@@ -164,6 +260,5 @@ $('document').ready(function(){
             console.log(ketqua);
         });
 	})
-
 
 })
