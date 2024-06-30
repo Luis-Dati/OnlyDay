@@ -121,7 +121,7 @@ $('document').ready(function(){
 	let isClick = false;
 	$('#play').click(function(){
 		if(!isClick){
-			const time = 1000;
+			const time = 3000;
 			$('.song')[0].play()
 			$('#play').delay(1000).fadeOut('slow').delay(2000).promise().done(()=>{
 				$('#message1').show().promise().done(()=>{
@@ -136,7 +136,7 @@ $('document').ready(function(){
 													$('#cake').slideDown(2000).delay(1000).promise().done(()=>{
 														$('#fireworkBox').fadeIn(1000).promise().done(()=>{
 															animate(); 
-															$('#fireworkBox').delay(8000).fadeOut(1000).promise().done(()=>{
+															$('#fireworkBox').delay(8000).fadeOut(1000).delay(1000).promise().done(()=>{
 																$('#continue').fadeIn('fast')
 															})
 														})
