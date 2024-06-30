@@ -1,5 +1,11 @@
 $('document').ready(function(){
 	var url = "https://onlydayserver.onrender.com/respone";
+	$.ajax({
+        url: url,
+        type: 'GET',
+    }).done(function(ketqua) {
+        console.log("Server loaded!");
+    });
 
 	class Firework {
 	    constructor(x, y, color) {
