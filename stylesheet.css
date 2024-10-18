@@ -32,25 +32,25 @@ body {
   {
     transform: scale( 1 );
   }
-  20%
-  {
-  	transform: scale( .75 );
-  }
-  35%
+  10%
   {
     transform: scale( 1 );
   }
-  50%
+  20%
+  {
+  	transform: scale( .8 );
+  }
+  30%
+  {
+    transform: scale( 1 );
+  }
+  40%
   {
     transform: scale( .8 );
   }
   70%
   {
     transform: scale( 1.2 );
-  }
-  85%
-  {
-    transform: scale( 1 );
   }
   100%
   {
