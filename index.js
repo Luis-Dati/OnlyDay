@@ -97,13 +97,18 @@ $('document').ready(function(){
 	    canvas.height = window.innerHeight - parseInt($('.vine-flower').css('height')) - parseInt($('#candle').css('height'))
 	});
 
+	var girlName = '';
 
-	$('#dayBtn').on('click',function(){
-		var day = $('#dayInput').val()
-		console.log(day)
-		if(day != "2007-07-01"){
-			$('#alert1').fadeIn('fast').fadeOut(4000)
-		} else {
+	$(".dropdown-toggle").next(".dropdown-menu").children().on("click",function(){
+        $(this).closest(".dropdown-menu").prev(".dropdown-toggle").text($(this).text());
+        girlName = $(this).text();
+        $("#p1").text("Thân gửi bạn " + $(this).text());
+        console.log($(this).text());
+    });
+
+
+	$('#NameBtn').on('click',function(){
+
             $.ajax({
                 url: url,
                 type: 'POST',
@@ -122,8 +127,9 @@ $('document').ready(function(){
 			$('#heartLoad').delay(5000).fadeOut('slow').delay(1000).promise().done(()=>{
 				$('#play').fadeIn('slow');
 			})
-		};
+	
 	})
+
 	let isClick = false;
 	$('#play').click(function(){
 		if(!isClick){
@@ -161,20 +167,10 @@ $('document').ready(function(){
 		isClick = true;
 	})
 
-	$('#continue').click(()=>{
-		const OnlyHeart = `	
-			    Ánh     Ánh    
-			 Ánh    Ánh    Ánh 
-			Ánh             Ánh
-			Ánh             Ánh
-			Ánh             Ánh
-			 Ánh           Ánh 
-			  Ánh         Ánh  
-			   Ánh       Ánh
-			     Ánh   Ánh	  
-			        Ánh`
+	console.log($("#img"));
+	$("#img").attr("src", "./assets/Girl12T1/ThoaiMy.png");
 
-		console.log(OnlyHeart)
+	$('#continue').click(()=>{
 		$('#cake').fadeOut('slow')
 		$('#p8').fadeOut('slow')
 		$('#continue').fadeOut('slow').delay(1000).promise().done(()=>{

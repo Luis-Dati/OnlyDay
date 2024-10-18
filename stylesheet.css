@@ -32,23 +32,23 @@ body {
   {
     transform: scale( 1 );
   }
-  10%
+  20%
   {
   	transform: scale( .75 );
   }
-  20%
+  35%
   {
     transform: scale( 1 );
   }
-  40%
+  50%
   {
     transform: scale( .8 );
   }
-  60%
+  70%
   {
     transform: scale( 1.2 );
   }
-  80%
+  85%
   {
     transform: scale( 1 );
   }
@@ -59,7 +59,7 @@ body {
 }
 
 .heartBeat {
-  	animation: heartbeat 2s infinite;
+  	animation: heartbeat 2.5s linear infinite;
 }
 
 @keyframes shadow-drop-2-center {
