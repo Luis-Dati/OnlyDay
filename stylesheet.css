@@ -59,7 +59,7 @@ body {
 }
 
 .heartBeat {
-  	animation: heartbeat 2.5s linear infinite;
+  	animation: heartbeat 2.5s infinite;
 }
 
 @keyframes shadow-drop-2-center {

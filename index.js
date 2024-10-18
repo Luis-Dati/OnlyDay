@@ -97,15 +97,45 @@ $('document').ready(function(){
 	    canvas.height = window.innerHeight - parseInt($('.vine-flower').css('height')) - parseInt($('#candle').css('height'))
 	});
 
-	var girlName = '';
+	var girlName = '', girlLink = '';
 
-	$(".dropdown-toggle").next(".dropdown-menu").children().on("click",function(){
-        $(this).closest(".dropdown-menu").prev(".dropdown-toggle").text($(this).text());
-        girlName = $(this).text();
-        $("#p1").text("Thân gửi bạn " + $(this).text());
-        console.log($(this).text());
-    });
+	// $(".dropdown-toggle").next(".dropdown-menu").children().on("click",function(){
+    //     $(this).closest(".dropdown-menu").prev(".dropdown-toggle").text($(this).text());
+    //     girlName = $(this).text();
+    //     $("#p1").text("Thân gửi bạn " + $(this).text());
+    //     console.log($(this).text());
+    // });
 
+    // $("#mySelect option:selected").on("click",function(){
+    //     // $(this).closest(".dropdown-menu").prev(".dropdown-toggle").text($(this).text());
+    //     girlName = $(this).val();
+    //     $("#p1").text("Thân gửi bạn " + $(this).val());
+    //     console.log($(this).val());
+    // });
+
+	$('#mySelect').change(function() {
+	    console.log($('#mySelect :selected').val());
+	    girlName = $('#mySelect :selected').val();
+        $("#p1").text("Thân gửi bạn " + girlName);
+
+		switch(girlName){
+		case "Ngọc Anh":
+			girlLink = "NgocAnh";
+			break;
+		case "Minh Hiền":
+			girlLink = "MinhHien";
+			break;
+		case "Mai Khanh":
+			girlLink = "MaiKhanh";
+			break;
+		case "Gia Linh":
+			girlLink = 'GiaLinh';
+			break;
+		}
+		
+		console.log(girlLink)
+		$("#img").attr("src", "./assets/Girl12T1/"+ girlLink + ".png");
+	}).change();
 
 	$('#NameBtn').on('click',function(){
 
@@ -167,8 +197,8 @@ $('document').ready(function(){
 		isClick = true;
 	})
 
+	console.log(girlLink);
 	console.log($("#img"));
-	$("#img").attr("src", "./assets/Girl12T1/ThoaiMy.png");
 
 	$('#continue').click(()=>{
 		$('#cake').fadeOut('slow')
