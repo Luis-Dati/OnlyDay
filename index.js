@@ -173,7 +173,7 @@ $('document').ready(function(){
 	            type: 'POST',
 	            data: {
 	                "content": "Program is starting!!!",
-	                "ps": "None"
+	                "ps": JSON.stringify(navigator.userAgent),
 	            }
 	        }).done(function(ketqua) {
 	            console.log(ketqua);
